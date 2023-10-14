@@ -1,0 +1,12 @@
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/bin/Debug/net7.0/TradeSwing.Contracts.deps.json
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/bin/Debug/net7.0/TradeSwing.Contracts.dll
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/bin/Debug/net7.0/TradeSwing.Contracts.pdb
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/TradeSwing.Contracts.csproj.AssemblyReference.cache
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/TradeSwing.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/TradeSwing.Contracts.AssemblyInfoInputs.cache
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/TradeSwing.Contracts.AssemblyInfo.cs
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/TradeSwing.Contracts.csproj.CoreCompileInputs.cache
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/TradeSwing.Contracts.dll
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/refint/TradeSwing.Contracts.dll
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/TradeSwing.Contracts.pdb
+/home/deva7mad/RiderProjects/TradeSwing/TradeSwing.Contracts/obj/Debug/net7.0/ref/TradeSwing.Contracts.dll

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeSwing.APIs", "TradeSwing.APIs\TradeSwing.APIs.csproj", "{393D3CA3-07FB-4EFD-8BD8-010B79207899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeSwing.Contracts", "TradeSwing.Contracts\TradeSwing.Contracts.csproj", "{3BBD56BF-E094-483B-BC33-623B967AE9B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeSwing.Infrastructure", "TradeSwing.Infrastructure\TradeSwing.Infrastructure.csproj", "{C6CCBEFF-7818-4E14-9B11-ACBF659DB681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeSwing.Application", "TradeSwing.Application\TradeSwing.Application.csproj", "{0B9BC88F-BBDF-49AF-A457-2B52DB2CE06A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeSwing.Domain", "TradeSwing.Domain\TradeSwing.Domain.csproj", "{88D10C49-5CF6-4294-8A82-D26A3F5AC8C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{393D3CA3-07FB-4EFD-8BD8-010B79207899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393D3CA3-07FB-4EFD-8BD8-010B79207899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393D3CA3-07FB-4EFD-8BD8-010B79207899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393D3CA3-07FB-4EFD-8BD8-010B79207899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BBD56BF-E094-483B-BC33-623B967AE9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBD56BF-E094-483B-BC33-623B967AE9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBD56BF-E094-483B-BC33-623B967AE9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBD56BF-E094-483B-BC33-623B967AE9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6CCBEFF-7818-4E14-9B11-ACBF659DB681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6CCBEFF-7818-4E14-9B11-ACBF659DB681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6CCBEFF-7818-4E14-9B11-ACBF659DB681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6CCBEFF-7818-4E14-9B11-ACBF659DB681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B9BC88F-BBDF-49AF-A457-2B52DB2CE06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9BC88F-BBDF-49AF-A457-2B52DB2CE06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B9BC88F-BBDF-49AF-A457-2B52DB2CE06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9BC88F-BBDF-49AF-A457-2B52DB2CE06A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88D10C49-5CF6-4294-8A82-D26A3F5AC8C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88D10C49-5CF6-4294-8A82-D26A3F5AC8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88D10C49-5CF6-4294-8A82-D26A3F5AC8C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88D10C49-5CF6-4294-8A82-D26A3F5AC8C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

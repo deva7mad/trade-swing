@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>781f4d09-d690-4b39-830d-15b74d60e9ee</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TradeSwing.Contracts\TradeSwing.Contracts.csproj" />
+    <ProjectReference Include="..\TradeSwing.Application\TradeSwing.Application.csproj" />
+    <ProjectReference Include="..\TradeSwing.Infrastructure\TradeSwing.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
