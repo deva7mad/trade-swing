@@ -77,8 +77,6 @@ public class TradeSwingProblemDetailsFactory : ProblemDetailsFactory
     #nullable disable
     private void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails, int statusCode)
     {
-      problemDetails.Extensions.Add("error", "An error occured while processing your request.");
-
       var status = problemDetails.Status;
       
       if (!status.HasValue)
