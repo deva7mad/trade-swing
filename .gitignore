@@ -34,3 +34,6 @@ msbuild.wrn
 .vs/
 
 .idea/
+
+TradeSwing.APIs/obj/
+TradeSwing.APIs/bin
