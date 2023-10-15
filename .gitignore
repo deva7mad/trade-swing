@@ -36,4 +36,10 @@ msbuild.wrn
 .idea/
 
 TradeSwing.APIs/obj/
-TradeSwing.APIs/bin
+TradeSwing.APIs/bin/
+TradeSwing.Application/obj/
+TradeSwing.Application/bin/
+TradeSwing.Infrastructure/obj/
+TradeSwing.Infrastructure/bin/
+TradeSwing.Domain/obj/
+TradeSwing.Domain/bin/
