@@ -29,9 +29,13 @@ public class AuthenticationService : IAuthenticationService
 
     public AuthenticationResult Register(string firstName, string lastName, string email, string mobile, string password)
     {
-        if (_userRepository.GetUserEmail(email) is not null || _userRepository.GetUserByMobile(mobile) is not null)
+        if (_userRepository.GetUserEmail(email) is not null)
         {
-            throw new Exception("User With Given Email Or Mobile Already Exits.");
+            throw new Exception("User with given email already exits.");
+        }
+        if (_userRepository.GetUserByMobile(mobile) is not null)
+        {
+            throw new Exception("User with given mobile already exits.");
         }
 
         var user = new User
