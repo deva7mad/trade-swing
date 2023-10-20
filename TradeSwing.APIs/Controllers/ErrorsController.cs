@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using TradeSwing.Application.Common.Errors;
 
 namespace TradeSwing.APIs.Controllers;
 
@@ -10,6 +11,11 @@ public class ErrorsController : ControllerBase
     public IActionResult Error()
     {
         var exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
-        return Problem(detail: exception?.Message, statusCode: 400);
+        var (statusCode, errorMessage) = exception switch
+        {
+            IServiceException serviceException => ((int) serviceException.StatusCode, serviceException.ErrorMessage),
+            _ => (StatusCodes.Status500InternalServerError, "An unexpected error occured.")
+        };
+        return Problem(statusCode: statusCode, title: errorMessage);
     }
 }

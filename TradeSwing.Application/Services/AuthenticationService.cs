@@ -1,6 +1,13 @@
+using ErrorOr;
+using FluentResults;
+using OneOf;
+using TradeSwing.Application.Common.Errors;
 using TradeSwing.Application.Common.Interfaces.Authentication;
 using TradeSwing.Application.Persistence;
+using TradeSwing.Domain.Common.Errors;
 using TradeSwing.Domain.Entities;
+using IError = TradeSwing.Application.Common.Errors.IError;
+using Result = FluentResults.Result;
 
 namespace TradeSwing.Application.Services;
 
@@ -15,28 +22,20 @@ public class AuthenticationService : IAuthenticationService
         _userRepository = userRepository;
     }
     
-    public AuthenticationResult Login(string mobile, string password)
+    public Result<AuthenticationResult> Login(string mobile, string password)
     {
         var user = _userRepository.GetUserByMobile(mobile);
+        
         if (user is null)
-            throw new Exception("Invalid Credentials.");
+            return Result.Fail<AuthenticationResult>(new FluentResultError());
 
-        if (user.Password != password)
-            throw new Exception("Invalid Credentials.");
-
-        return new AuthenticationResult(user, _jwtTokenGenerator.GenerateToken(user));
+        return user.Password != password ? Result.Fail<AuthenticationResult>(new FluentResultError()) : new AuthenticationResult(user, _jwtTokenGenerator.GenerateToken(user));
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string mobile, string password)
+    public OneOf<AuthenticationResult, IError> Register(string firstName, string lastName, string email, string mobile, string password)
     {
-        if (_userRepository.GetUserEmail(email) is not null)
-        {
-            throw new Exception("User with given email already exits.");
-        }
-        if (_userRepository.GetUserByMobile(mobile) is not null)
-        {
-            throw new Exception("User with given mobile already exits.");
-        }
+        if (_userRepository.GetUserEmail(email) is not null || _userRepository.GetUserByMobile(mobile) is not null)
+            return new DataDuplicationError();
 
         var user = new User
         {
@@ -50,5 +49,25 @@ public class AuthenticationService : IAuthenticationService
         _userRepository.AddUser(user);
         
         return new AuthenticationResult(user,  _jwtTokenGenerator.GenerateToken(user));
+    }
+
+    public ErrorOr<AuthenticationResult> Get(string username)
+    {
+        if (username.Contains('_'))
+            return Errors.Validation.InvalidFormat;
+
+        if (_userRepository.GetUserEmail(username) is not null || _userRepository.GetUserByMobile(username) is not null)
+            return Errors.User.DuplicateData;
+
+        var user = new User
+        {
+            Email = "email",
+            Mobile = "mobile",
+            FirstName = "first",
+            LastName = "Last",
+            Password = "string"
+        };
+
+        return new AuthenticationResult(user, _jwtTokenGenerator.GenerateToken(user));
     }
 }

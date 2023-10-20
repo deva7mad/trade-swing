@@ -1,10 +1,11 @@
 using System.Diagnostics;
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 
-namespace TradeSwing.APIs.Errors;
+namespace TradeSwing.APIs.Common.Errors;
 
 public class TradeSwingProblemDetailsFactory : ProblemDetailsFactory
   {
@@ -92,7 +93,9 @@ public class TradeSwingProblemDetailsFactory : ProblemDetailsFactory
       var str1 = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
       if (str1 != null)
         problemDetails.Extensions["traceId"] = str1;
-      
+
+      if (httpContext!.Items["errors"] is List<Error> errors) problemDetails.Extensions.Add("errorCodes", errors.Select(e => e.Code));
+
       _configure?.Invoke(new ProblemDetailsContext
       {
         HttpContext = httpContext!,

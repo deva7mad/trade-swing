@@ -19,7 +19,10 @@ public class AuthenticationController : ControllerBase
     public IActionResult Login(LoginRequest request)
     {
         var result = _authenticationService.Login(request.Mobile, request.Password);
-        return Ok(new AuthenticationResponse(result.User.Id, result.User.FirstName, result.User.LastName, result.User.Email, result.User.Mobile, result.Token));
+        return result.IsSuccess
+            ? Ok(new AuthenticationResponse(result.Value.User.Id, result.Value.User.FirstName,
+                result.Value.User.LastName, result.Value.User.Email, result.Value.User.Mobile, result.Value.Token))
+            : Problem(statusCode: StatusCodes.Status400BadRequest, title: result.Errors.First().Message);
     }
 
     [HttpPost("register")]
@@ -27,8 +30,10 @@ public class AuthenticationController : ControllerBase
     {
         var result = _authenticationService.Register(request.FirstName, request.LastName,
             request.Email, request.Mobile, request.Password);
-        
-        return Ok(new AuthenticationResponse(result.User.Id, result.User.FirstName, result.User.LastName, result.User.Email, result.User.Mobile, result.Token));
 
+        return result.Match(
+            response => Ok(new AuthenticationResponse(response.User.Id, response.User.FirstName, response.User.LastName, response.User.Email, response.User.Mobile, response.Token)),
+            error => Problem(statusCode: (int)error.StatusCode, title: error.ErrorMessage)
+                );
     }
 }

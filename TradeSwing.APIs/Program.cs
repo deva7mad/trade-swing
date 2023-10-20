@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.OpenApi.Models;
-using TradeSwing.APIs.Errors;
+using TradeSwing.APIs.Common.Errors;
 using TradeSwing.APIs.Filters;
 using TradeSwing.APIs.Middleware;
 using TradeSwing.Application;
@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
     // Add services to the container.
     // builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
     builder.Services.AddControllers();
-    // builder.Services.AddSingleton<ProblemDetailsFactory, TradeSwingProblemDetailsFactory>();
+    builder.Services.AddSingleton<ProblemDetailsFactory, TradeSwingProblemDetailsFactory>();
 
     builder.Services.AddApplication()
         .AddInfrastructure(builder.Configuration);
