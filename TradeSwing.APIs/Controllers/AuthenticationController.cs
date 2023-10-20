@@ -1,39 +1,41 @@
+using MediatR;
+using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
-using TradeSwing.Application.Services;
 using TradeSwing.Contracts.Authentication;
+using TradeSwing.Application.Authentication.Queries.Login;
+using TradeSwing.Application.Authentication.Commands.Register;
 
 namespace TradeSwing.APIs.Controllers;
 
 [ApiController]
 [Route("auth")]
-public class AuthenticationController : ControllerBase
+public class AuthenticationController : ApiController
 {
-    private readonly IAuthenticationService _authenticationService;
+    private readonly ISender _mediator;
+    private readonly IMapper _mapper;
 
-    public AuthenticationController(IAuthenticationService authenticationService)
+    public AuthenticationController(ISender mediator, IMapper mapper)
     {
-        _authenticationService = authenticationService;
+        _mediator = mediator;
+        _mapper = mapper;
     }
     
     [HttpPost("login")]
-    public IActionResult Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        var result = _authenticationService.Login(request.Mobile, request.Password);
-        return result.IsSuccess
-            ? Ok(new AuthenticationResponse(result.Value.User.Id, result.Value.User.FirstName,
-                result.Value.User.LastName, result.Value.User.Email, result.Value.User.Mobile, result.Value.Token))
-            : Problem(statusCode: StatusCodes.Status400BadRequest, title: result.Errors.First().Message);
+        var query = _mapper.Map<LoginQuery>(request);
+        var result = await _mediator.Send(query);
+        
+        return result.Match(response => Ok(_mapper.Map<AuthenticationResponse>(response)), Problem);
     }
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var result = _authenticationService.Register(request.FirstName, request.LastName,
-            request.Email, request.Mobile, request.Password);
+        var command = _mapper.Map<RegisterCommand>(request);
 
-        return result.Match(
-            response => Ok(new AuthenticationResponse(response.User.Id, response.User.FirstName, response.User.LastName, response.User.Email, response.User.Mobile, response.Token)),
-            error => Problem(statusCode: (int)error.StatusCode, title: error.ErrorMessage)
-                );
+        var result = await _mediator.Send(command);
+
+        return result.Match(response => Ok(MapAuthResult(response)), Problem);
     }
 }

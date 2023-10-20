@@ -4,7 +4,7 @@ namespace TradeSwing.Application.Persistence;
 
 public interface IUserRepository
 {
-    void AddUser(User user);
-    User? GetUserByMobile(string mobile);
-    User? GetUserEmail(string email);
+    void AddUser(UserEntity userEntity);
+    UserEntity? GetUserByMobile(string mobile);
+    UserEntity? GetUserEmail(string email);
 }

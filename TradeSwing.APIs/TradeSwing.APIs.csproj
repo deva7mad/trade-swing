@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
@@ -16,10 +18,6 @@
     <ProjectReference Include="..\TradeSwing.Contracts\TradeSwing.Contracts.csproj" />
     <ProjectReference Include="..\TradeSwing.Application\TradeSwing.Application.csproj" />
     <ProjectReference Include="..\TradeSwing.Infrastructure\TradeSwing.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Common\" />
   </ItemGroup>
 
 </Project>

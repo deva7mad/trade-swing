@@ -37,7 +37,7 @@ public class AuthenticationService : IAuthenticationService
         if (_userRepository.GetUserEmail(email) is not null || _userRepository.GetUserByMobile(mobile) is not null)
             return new DataDuplicationError();
 
-        var user = new User
+        var user = new UserEntity
         {
             FirstName = firstName, 
             LastName = lastName, 
@@ -59,7 +59,7 @@ public class AuthenticationService : IAuthenticationService
         if (_userRepository.GetUserEmail(username) is not null || _userRepository.GetUserByMobile(username) is not null)
             return Errors.User.DuplicateData;
 
-        var user = new User
+        var user = new UserEntity
         {
             Email = "email",
             Mobile = "mobile",

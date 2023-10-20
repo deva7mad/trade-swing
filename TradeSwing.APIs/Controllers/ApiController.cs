@@ -1,5 +1,8 @@
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
+using TradeSwing.APIs.Common.Http;
+using TradeSwing.Application.Services;
+using TradeSwing.Contracts.Authentication;
 
 namespace TradeSwing.APIs.Controllers;
 
@@ -8,7 +11,7 @@ public class ApiController : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)
     {
-        HttpContext.Items["errors"] = errors;
+        HttpContext.Items[HttpContextItemKeys.Errors] = errors;
         
         var error = errors.First();
         var statusCode = error.Type switch
@@ -21,5 +24,17 @@ public class ApiController : ControllerBase
         };
         
         return Problem(statusCode: statusCode, title: error.Description);
+    }
+    
+    protected static AuthenticationResponse MapAuthResult(AuthenticationResult result)
+    {
+        return new AuthenticationResponse(
+            result.UserEntity.Id,
+            result.UserEntity.FirstName,
+            result.UserEntity.LastName,
+            result.UserEntity.Email,
+            result.UserEntity.Mobile,
+            result.Token
+        );
     }
 }

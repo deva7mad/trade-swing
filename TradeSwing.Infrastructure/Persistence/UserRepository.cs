@@ -5,18 +5,18 @@ namespace TradeSwing.Infrastructure.Persistence;
 
 public class UserRepository : IUserRepository
 {
-    private static readonly List<User> Users = new(); 
-    public void AddUser(User user)
+    private static readonly List<UserEntity> Users = new(); 
+    public void AddUser(UserEntity userEntity)
     {
-        Users.Add(user);
+        Users.Add(userEntity);
     }
 
-    public User? GetUserByMobile(string mobile)
+    public UserEntity? GetUserByMobile(string mobile)
     {
         return Users.SingleOrDefault(u => u.Mobile == mobile);
     }
 
-    public User? GetUserEmail(string email)
+    public UserEntity? GetUserEmail(string email)
     {
         return Users.SingleOrDefault(u => u.Email == email);
     }

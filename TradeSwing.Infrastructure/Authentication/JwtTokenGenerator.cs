@@ -22,17 +22,17 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(User user)
+    public string GenerateToken(UserEntity userEntity)
     {
         var signingCredentials =
             new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)), HmacSha256);
         
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
-            new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
+            new Claim(JwtRegisteredClaimNames.GivenName, userEntity.FirstName),
+            new Claim(JwtRegisteredClaimNames.FamilyName, userEntity.LastName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
+            new Claim(JwtRegisteredClaimNames.Sub, userEntity.Id.ToString())
         };
 
         var securityToken = new JwtSecurityToken(
