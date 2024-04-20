@@ -1,11 +1,11 @@
-using TradeSwing.Application.Persistence;
 using TradeSwing.Domain.Entities;
+using TradeSwing.Application.Persistence;
 
 namespace TradeSwing.Infrastructure.Persistence;
 
 public class UserRepository : IUserRepository
 {
-    private static readonly List<UserEntity> Users = new(); 
+    private static readonly List<UserEntity> Users = []; 
     public void AddUser(UserEntity userEntity)
     {
         Users.Add(userEntity);

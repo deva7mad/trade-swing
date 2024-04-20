@@ -1,9 +1,11 @@
 using TradeSwing.APIs;
 using TradeSwing.Application;
 using TradeSwing.Infrastructure;
+using TradeSwing.APIs.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 {
+    // builder.Services.InstallServices(builder.Configuration, typeof(IServiceInstaller).Assembly);
     builder.Services.AddApplication()
         .AddPresentation()
         .AddInfrastructure(builder.Configuration);
